@@ -133,7 +133,7 @@ class FormResultsController extends FormManagerController
      * @throws Exception
      * @internal
      */
-    public function indexAction(int $page = 1, string $searchTerm = '', string $orderField = '', ?SortDirection $orderDirection = null): ResponseInterface
+    public function indexAction(int $page = 1, string $searchTerm = '', string $orderField = '', ?string $orderDirection = null): ResponseInterface
     {
         $this->moduleTemplate = $this->moduleTemplateFactory->create($this->request);
 
@@ -479,7 +479,7 @@ class FormResultsController extends FormManagerController
      *     identifier: string
      * }>
      */
-    protected function getAvailableFormDefinitions(array $formSettings, string $searchTerm = '', string $orderField = '', ?SortDirection $orderDirection = null): array
+    protected function getAvailableFormDefinitions(array $formSettings, \TYPO3\CMS\Form\Domain\DTO\SearchCriteria $searchCriteria, string $returnUrl = ''): array
     {
         $formResults = $this->formResultDatabaseService->getAllFormResultsForPersistenceIdentifier();
         $availableFormDefinitions = [];
